@@ -1,0 +1,16 @@
+AIHubDemo/
+
+DemoHub_vue/.DS_Store
+DemoHub_vue/node_modules/
+/dist/
+DemoHub_vue/npm-debug.log*
+DemoHub_vue/yarn-debug.log*
+DemoHub_vue/yarn-error.log*
+
+# Editor directories and files
+DemoHub_vue/.idea
+DemoHub_vue/.vscode
+DemoHub_vue/*.suo
+DemoHub_vue/*.ntvs*
+DemoHub_vue/*.njsproj
+DemoHub_vue/*.sln
