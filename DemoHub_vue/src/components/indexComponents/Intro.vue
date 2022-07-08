@@ -1,5 +1,7 @@
 <template>
   <div class="intro-wrap">
+          <div class="short-line"></div>
+
     <p class="intro-tittle">{{ introData.tittle[this.$i18n.locale] }}</p>
     <div
       v-for="(text, index) in introData.text[this.$i18n.locale]"
@@ -26,6 +28,12 @@ export default {
 </script>
 
 <style>
+.short-line {
+  border-bottom: 4px solid black;
+  width: 5%;
+  min-width: 40px;
+  margin: 20px 0;
+}
 .inline {
   display: inline;
 }

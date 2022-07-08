@@ -2,12 +2,11 @@
   <div>
     <!-- {{baseUrl}} -->
 
-    <div class="main-wrap centered lr-padding border">
+    <div class="main-wrap  border">
       <div class="index-logo">
         <img src="@/assets/img/logo.png" alt="" />
         <p>DemoHub</p>
       </div>
-      <div class="short-line"></div>
       <MyIntro :introData="allData.index.introduction"></MyIntro>
       <div v-for="(typeData, type) in allData.model_type" :key="type">
 
@@ -64,12 +63,7 @@ export default {
   color: #333333;
 }
 
-.short-line {
-  border-bottom: 4px solid black;
-  width: 5%;
-  min-width: 50px;
-  margin: 20px 5px;
-}
+
 
 .myimg{
   width: 50%;

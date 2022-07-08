@@ -68,7 +68,7 @@
                     },
                     "input_image_name": "demo.jpg",
                     "output_image_name": "demo.jpg",
-                    "likes": 336,
+                    "likes": 337,
                     "pageviews": 0,
                     "author": "DemoHub"
                 },
@@ -102,7 +102,7 @@
                     },
                     "input_image_name": "demo.jpg",
                     "output_image_name": "demo.jpg",
-                    "likes": 337,
+                    "likes": 339,
                     "pageviews": 0,
                     "author": "DemoHub"
                 }
@@ -149,7 +149,7 @@
                             "url": "https://mmcheng.net"
                         }
                     },
-                    "likes": 0,
+                    "likes": 1,
                     "pageviews": 0,
                     "input_image_name": "default.png",
                     "output_image_name": "default.png",

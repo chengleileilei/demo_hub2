@@ -31,10 +31,11 @@
 
 <script>
 import ModelCard from "@/components/indexComponents/ModelCard.vue";
+
 export default {
   name: "ModelType",
   props: ["typeData", "type"],
-  components: { ModelCard },
+  components: { ModelCard,},
   data() {
     return {
       modelType: "",
@@ -46,7 +47,6 @@ export default {
 
 <style>
 .model-type-wrap {
-
 }
 .type-tittle-wrap {
   display: flex;

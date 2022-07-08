@@ -1,15 +1,17 @@
 <template>
   <div id="app">
         <Header></Header>
-    <router-view/>
+    <router-view class="centered lr-padding"/>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Header from "@/components/structure/Header.vue";
+import Footer from "@/components/structure/Footer.vue";
 export default {
   name: 'App',
-    components: { Header },
+    components: { Header,Footer },
     mounted() {
     // 监听当浏览器窗口关闭或者刷新时
     // window.addEventListener('unload', this.saveSharedState)
