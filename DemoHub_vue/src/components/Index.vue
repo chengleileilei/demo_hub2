@@ -1,7 +1,7 @@
 <template>
   <div>
-    {{baseUrl}}
-    <Header></Header>
+    <!-- {{baseUrl}} -->
+
     <div class="main-wrap centered lr-padding border">
       <div class="index-logo">
         <img src="@/assets/img/logo.png" alt="" />
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import Header from "@/components/indexComponents/Header.vue";
+
 import MyIntro from "@/components/indexComponents/Intro.vue";
 import ModelType from "@/components/indexComponents/ModelType.vue";
 // import mockData from "@/assets/mockData/mockData.json";
@@ -28,7 +28,7 @@ import configData from "@/assets/config.json"
 
 export default {
   name: "Index",
-  components: { Header, MyIntro, ModelType },
+  components: { MyIntro, ModelType },
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
@@ -39,6 +39,7 @@ export default {
   created(){
     this.$axios.get(this.baseUrl+"data").then((response)=>{
       this.allData = response.data
+      this.$store.setMessageAction(this.allData)
     })
   }
 };

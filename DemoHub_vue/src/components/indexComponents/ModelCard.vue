@@ -15,14 +15,14 @@
         />
       </div>
     </div>
-    <p class="model-name">{{ modelData.name[this.$i18n.locale] }}</p>
+    <p class="model-name" @click="routerTo()">{{ modelData.name[this.$i18n.locale] }}</p>
     <div class="model-info">
       <p class="author">{{ modelData.author }}</p>
       <div class="info">
         <div
           class="heart-shaped"
           @click="like()"
-          :style="{ '--heartColor': heartColor }"
+          :style="{ '--currentHeartColor': currentHeartColor }"
         ></div>
         <p>{{ modelData.likes }}</p>
         <span class="el-icon-view"></span>
@@ -45,8 +45,11 @@ export default {
     return {
       baseUrl: configData.base_url,
       imageFileName: configData.image_file_name,
-      // heartColor:{n:""}
-      heartColor: "#747474",
+      currentHeartColor:"#9c9c9c",
+      heartColor: {
+        "active":"#ff6347",
+        "inactive":"#9c9c9c"
+      }
     };
   },
   mounted() {
@@ -54,18 +57,21 @@ export default {
       localStorage.getItem(this.type+this.model + "_like") == null ||
       localStorage.getItem(this.type+this.model + "_like") == 0
     ) {
-      this.heartColor = "#747474";
+      this.currentHeartColor = this.heartColor["inactive"];
     } else {
-      this.heartColor = "#ff6347";
+      this.currentHeartColor = this.heartColor["active"];
     }
   },
   methods: {
+        routerTo() {
+      this.$router.push("/model/" + this.type+'/'+this.model);
+    },
     like() {
       if (
         localStorage.getItem(this.type+this.model + "_like") == null ||
         localStorage.getItem(this.type+this.model + "_like") == 0
       ) {
-        this.heartColor = "#ff6347";
+        this.currentHeartColor = this.heartColor["active"];
         localStorage[this.type+this.model + "_like"] = 1;
         this.$axios
           .get(this.baseUrl + "like", {
@@ -78,7 +84,7 @@ export default {
             this.modelData.likes = response.data;
           });
       } else {
-        this.heartColor = "#747474";
+        this.currentHeartColor = this.heartColor["inactive"];
         this.$axios
           .get(this.baseUrl + "dislike", {
             params: {
@@ -98,7 +104,7 @@ export default {
 
 <style scoped>
 .card {
-  width: 500px;
+  width: 100%;
   margin-bottom: 40px;
 }
 .image-wrap {
@@ -116,6 +122,7 @@ export default {
   /* width: 100%; */
 }
 .model-name {
+  cursor: pointer;
   text-align: left;
   font-size: 18px;
   font-family: Microsoft YaHei;
@@ -137,10 +144,12 @@ export default {
 }
 .info p {
   margin-left: 5px;
+  
 }
 .info span {
   margin-left: 10px;
-  font-size: 24px;
+  font-size: 20px;
+  color: rgb(156 156 156);
 }
 
 /* 心形 */
@@ -148,7 +157,7 @@ export default {
   cursor: pointer;
   width: 10px;
   height: 10px;
-  background-color: var(--heartColor);
+  background-color: var(--currentHeartColor);
   transform: rotate(-45deg);
 }
 
@@ -160,7 +169,8 @@ export default {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: var(--heartColor);
+  background-color: var(--currentHeartColor);
+ 
 }
 
 .heart-shaped:after {
@@ -170,7 +180,7 @@ export default {
   left: 50%;
   width: 100%;
   height: 100%;
-  background-color: var(--heartColor);
+  background-color: var(--currentHeartColor);
   border-radius: 50%;
 }
 </style>

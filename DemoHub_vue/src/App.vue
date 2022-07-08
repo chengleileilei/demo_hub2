@@ -1,12 +1,27 @@
 <template>
   <div id="app">
+        <Header></Header>
     <router-view/>
   </div>
 </template>
 
 <script>
+import Header from "@/components/structure/Header.vue";
 export default {
-  name: 'App'
+  name: 'App',
+    components: { Header },
+    mounted() {
+    // 监听当浏览器窗口关闭或者刷新时
+    // window.addEventListener('unload', this.saveSharedState)
+    window.addEventListener('beforeunload', this.saveSharedState)
+},
+methods: {
+    saveSharedState() {
+        window.sessionStorage.setItem('sharedState', JSON.stringify(this.$store.state))
+    }
+}
+
+
 }
 </script>
 
@@ -27,6 +42,7 @@ a{
 .centered {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 5px;
 }
 .border{
   outline: 1px solid rgba(87, 87, 87, 0.26);

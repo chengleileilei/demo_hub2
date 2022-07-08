@@ -5,8 +5,8 @@ current_path = os.path.dirname(__file__)
 default_data={
     "likes":0,
     "pageviews":0,
-    "input_image_name":"default.webp",
-    "output_image_name": "default.webp",
+    "input_image_name":"default.png",
+    "output_image_name": "default.png",
     "author":"DemoHub"
 }
 

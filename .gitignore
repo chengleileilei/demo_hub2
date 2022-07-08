@@ -1,5 +1,6 @@
 back_end/images/*.JPG
 AIHubDemo/
+demohub_old/
 DemoHub_vue/.DS_Store
 DemoHub_vue/node_modules/
 /dist/

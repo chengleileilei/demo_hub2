@@ -32,7 +32,8 @@ export default {
 
 .intro-wrap {
   text-align: left;
-  padding: 0 5px;
+  margin-bottom:20px;
+
 }
 .intro-tittle {
   font-size: 20px;
