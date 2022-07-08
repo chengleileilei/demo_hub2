@@ -1,6 +1,6 @@
 # encoding:utf8
 __author__ = 'sijiu'
-
+from init import initJsonData
 from flask import Response, Flask, request,jsonify
 import os
 import json
@@ -44,7 +44,23 @@ def like():
         write_f.write(json.dumps(s, indent=4, ensure_ascii=False))
     return jsonify(s["model_type"][model_type]["models"][model_name]["likes"])
 
-app.run()
+@app.route("/dislike",methods=['post','get'])
+def dislike():
+    model_type = request.args.get("type")
+    model_name = request.args.get("model")
+    s = json.load(open(current_path+'\\mockData.json','r',encoding='utf-8'))
+    if s["model_type"][model_type]["models"][model_name]["likes"] > 0:
+        s["model_type"][model_type]["models"][model_name]["likes"] -= 1
+        with open(current_path+'\\mockData.json', 'w',encoding='utf-8') as write_f:
+            write_f.write(json.dumps(s, indent=4, ensure_ascii=False))
+        return jsonify(s["model_type"][model_type]["models"][model_name]["likes"])
+    else:
+        return jsonify(s["model_type"][model_type]["models"][model_name]["likes"])
+
+if __name__ == "__main__":
+    # 初始化json数据（补充点赞，浏览，默认样例图片数据）
+    initJsonData()
+    app.run()
 
 
 # app.run(host='0.0.0.0',port=4949, debug=True)

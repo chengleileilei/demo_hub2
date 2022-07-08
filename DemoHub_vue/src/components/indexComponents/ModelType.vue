@@ -9,7 +9,7 @@
           <div v-for="(model,index) in typeData.models" :key="index">
               <!-- {{model}} -->
 
-          <ModelCard :modelData="model" :type="type"></ModelCard>
+          <ModelCard :modelData="model" :type="type" :model="index"></ModelCard>
           </div>
       </div>
 
@@ -43,7 +43,7 @@ export default {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin:0 5px;
+    margin:10px 5px;
 }
 .type-tittle{
     font-size: 18px;
@@ -65,7 +65,8 @@ export default {
     padding: 10px;
 }
 .type-main{
-    display: flex;
+    /* display: flex; */
+    margin:0 5px;
 }
 
 </style>

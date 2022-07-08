@@ -68,8 +68,9 @@
                     },
                     "input_image_name": "1.JPG",
                     "output_image_name": "2.JPG",
-                    "likes": 150,
-                    "pageviews": 0
+                    "likes": 336,
+                    "pageviews": 0,
+                    "author": "DemoHub"
                 }
             }
         },
@@ -86,7 +87,7 @@
                 "url": ""
             },
             "models": {
-                "alexnet": {
+                "process": {
                     "name": {
                         "en": "Alexnet",
                         "cn": "Alexnet(中)"
@@ -114,10 +115,11 @@
                             "url": "https://mmcheng.net"
                         }
                     },
-                    "input_image_name": "1.JPG",
-                    "output_image_name": "2.JPG",
-                    "likes": 0,
-                    "pageviews": 0
+                    "likes": 62,
+                    "pageviews": 0,
+                    "input_image_name": "default.webp",
+                    "output_image_name": "default.webp",
+                    "author": "DemoHub"
                 }
             }
         }
