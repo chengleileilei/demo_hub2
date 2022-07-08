@@ -10,7 +10,7 @@
                 src="@/assets/icon/arcoDesign-location.svg"
                 alt=""
               />
-              地址：北京市海淀区上园村3号
+              {{$t("message.address")}}北京市海淀区上园村3号
             </p>
             <p class="with-logo-left">
               <img
@@ -18,20 +18,19 @@
                 src="@/assets/icon/fas-fa-phone.svg"
                 alt=""
               />
-              电话：******
+              {{$t("message.phone")}}******
             </p>
             <p class="with-logo-left">
               <img
                 class="footer-logo"
                 src="@/assets/icon/arcoDesign-email.svg"
                 alt=""
-              />
-              邮箱：***@email.com
+              />{{$t("message.email")}}***@email.com
             </p>
             <br />
             <a href="#"
               ><p class="small-p">
-                友情链接：北京交通大学计算机信息与技术学院
+                {{$t("message.related_links")}}北京交通大学计算机信息与技术学院
               </p></a
             >
           </el-col>
