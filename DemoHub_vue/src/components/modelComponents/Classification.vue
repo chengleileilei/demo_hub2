@@ -3,16 +3,16 @@
     <h1>classification</h1>
     <el-row class="show-wrap">
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <p>Input Image:</p>
+        <p>{{$t("message.input_image")}}</p>
         <img :src="imageUrl" alt="" class="source-image" />
         <div
           class="input-wrap"
           v-show="imageUrl == ''"
           @click="moveClick()"
         >
-          <p v-show="isLoading == false">Drop Image Here</p>
-          <p v-show="isLoading == false">- OR -</p>
-          <p v-show="isLoading == false">Click to Upload</p>
+          <p v-show="isLoading == false">{{$t("message.drop_image")}}</p>
+          <p v-show="isLoading == false">{{$t("message.or")}}</p>
+          <p v-show="isLoading == false">{{$t("message.click_upload")}}</p>
           <p v-show="isLoading">uploading......</p>
           <input
             ref="filebutton"
@@ -23,7 +23,7 @@
         </div>
       </el-col>
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <p>Result:</p>
+        <p>{{$t("message.result")}}</p>
         <!-- <img :src="imageUrl" alt="" /> -->
       </el-col>
     </el-row>
@@ -34,11 +34,11 @@
           href="javascript:void(0);"
           class="clear upload-btn"
           @click="imageClear()"
-          >CLEAR</a
+          >{{$t("message.clear")}}</a
         >
       </el-col>
       <el-col :xs="12" :sm="6" :md="6" :lg="6" :xl="6">
-        <a href="javascript:void(0);" class="submit upload-btn">SUBMIT</a>
+        <a href="javascript:void(0);" class="submit upload-btn">{{$t("message.submit")}}</a>
       </el-col>
     </el-row>
   </div>

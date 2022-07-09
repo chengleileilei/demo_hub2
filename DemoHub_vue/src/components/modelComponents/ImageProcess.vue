@@ -3,7 +3,7 @@
     <h1>imageprocess</h1>
     <el-row class="show-wrap">
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <p>Input Image:</p>
+        <p>{{$t("message.input_image")}}</p>
         <img :src="imageUrl" alt="" class="source-image" />
         <div class="input-wrap" v-show="imageUrl == ''" @click="moveClick()">
           <p class="before-p">Drop Image Here</p>
