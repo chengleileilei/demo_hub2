@@ -100,7 +100,7 @@
                     "input_image_name": "demo.jpg",
                     "output_image_name": "demo.jpg",
                     "likes": 337,
-                    "pageviews": 75,
+                    "pageviews": 90,
                     "author": "DemoHub"
                 },
                 "rnet": {
@@ -139,7 +139,7 @@
                 }
             }
         },
-        "image process": {
+        "image_process": {
             "name": {
                 "en": "image process",
                 "cn": "图像处理"
@@ -180,8 +180,8 @@
                             "url": "https://mmcheng.net"
                         }
                     },
-                    "likes": 1,
-                    "pageviews": 4,
+                    "likes": 2,
+                    "pageviews": 9,
                     "input_image_name": "default.png",
                     "output_image_name": "default.png",
                     "author": "DemoHub"

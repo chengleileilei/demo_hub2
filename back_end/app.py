@@ -1,5 +1,4 @@
 # encoding:utf8
-__author__ = 'sijiu'
 from init import initJsonData
 from flask import Response, Flask, request,jsonify
 import os,random,string
@@ -24,7 +23,7 @@ cur_image = ImageStore()
 @app.route("/image", methods=['post', 'get'])
 def getImage():
     path = request.args.get('path')
-    print(path)
+    # print(path)
     path = current_path + "\\images\\" + path
     # path = os.path.abspath(path)
     resp = Response(open(path, 'rb'), mimetype="image/jpeg")
@@ -33,7 +32,7 @@ def getImage():
 @app.route("/sourceimage", methods=['post', 'get'])
 def getSourceImage():
     path = request.args.get('name')
-    print(path)
+    # print(path)
     path = current_path + "\\source_images\\" + path
     # path = os.path.abspath(path)
     resp = Response(open(path, 'rb'), mimetype="image/jpeg")
@@ -43,7 +42,7 @@ def getSourceImage():
 @app.route("/data",methods=['post','get'])
 def getData():
     s = json.load(open(current_path+'\\mockData.json','r',encoding='utf-8'))
-    print(s,type(s))
+    # print(s,type(s))
     return jsonify(s)
 
 #  http://127.0.0.1:5000/like?type=classification&&model=alexnet

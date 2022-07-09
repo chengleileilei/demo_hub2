@@ -15,7 +15,7 @@ def initJsonData():
     s = json.load(open(current_path+'\\mockData.json','r',encoding='utf-8'))
     for (type,type_data) in s["model_type"].items():
         for (model_name,model_data) in type_data["models"].items():
-            print(model_name,model_data)
+            # print(model_name,model_data)
             for key in default_data:
                 if not (key in model_data):
                     model_data[key] = default_data[key]

@@ -1,19 +1,15 @@
 <template>
   <div>
-    <h1>classification</h1>
+    <h1>imageprocess</h1>
     <el-row class="show-wrap">
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <p>Input Image:</p>
         <img :src="imageUrl" alt="" class="source-image" />
-        <div
-          class="input-wrap"
-          v-show="imageUrl == ''"
-          @click="moveClick()"
-        >
-          <p v-show="isLoading == false">Drop Image Here</p>
-          <p v-show="isLoading == false">- OR -</p>
-          <p v-show="isLoading == false">Click to Upload</p>
-          <p v-show="isLoading">uploading......</p>
+        <div class="input-wrap" v-show="imageUrl == ''" @click="moveClick()">
+          <p class="before-p">Drop Image Here</p>
+          <p class="before-p">- OR -</p>
+          <p class="before-p">Click to Upload</p>
+          <p class="loading-p hidden">uploading......</p>
           <input
             ref="filebutton"
             type="file"
@@ -54,7 +50,6 @@ export default {
     return {
       baseUrl: configData.base_url,
       imageUrl: "",
-      isLoading: false,
     };
   },
   methods: {
@@ -66,9 +61,6 @@ export default {
         // console.log(this.$refs.filebutton.files)
       });
     },
-    // imageLoad() {
-    //   this.isLoading = false;
-    // },
     imageVerification(file) {
       /*判断文件后缀类型*/
       var strs = new Array(); //定义一数组
@@ -97,34 +89,33 @@ export default {
     },
     fileChange() {
       if (this.imageVerification(this.$refs.filebutton)) {
-        this.isLoading = true;
         this.$nextTick(() => {
-          console.log(this.$refs.filebutton.files);
-          const formData = new FormData();
-          formData.append("image", this.$refs.filebutton.files[0]);
-          this.$axios
-            .post(this.baseUrl + "upload", formData, {
-              "Content-type": "multipart/form-data",
-            })
-            .then(
-              (res) => {
-                console.log(res.data);
-                this.imageUrl = this.baseUrl + "sourceimage?name=" + res.data;
-              },
-              (err) => {
-                alert("上传图片失败！");
-                // 出现错误时的处理
-              }
-            );
-        });
+        console.log(this.$refs.filebutton.files);
+        const formData = new FormData();
+        formData.append("image", this.$refs.filebutton.files[0]);
+        this.$axios
+          .post(this.baseUrl + "upload", formData, {
+            "Content-type": "multipart/form-data",
+          })
+          .then(
+            (res) => {
+              console.log(res.data);
+              this.imageUrl = this.baseUrl + "sourceimage?name=" + res.data;
+            },
+            (err) => {
+              alert("上传图片失败！");
+              // 出现错误时的处理
+            }
+          );
+      });
       } else {
-        console.log("图片校验失败！");
+        console.log("图片校验失败！")
       }
+
+      
     },
     imageClear() {
       (this.imageUrl = ""), (this.$refs.filebutton.value = "");
-              this.isLoading=false;
-
     },
   },
 };

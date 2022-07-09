@@ -31,13 +31,14 @@
 import configData from "@/assets/config.json";
 import MyIntro from "@/components/indexComponents/Intro.vue";
 // import Classification from "@/components/modelComponents/Classification.vue";
-
 export default {
   name: "Model",
   components: {
     MyIntro,
     classification: () =>
       import("@/components/modelComponents/Classification.vue"),
+    image_process: () =>
+      import("@/components/modelComponents/ImageProcess.vue"),
   },
   data() {
     return {
