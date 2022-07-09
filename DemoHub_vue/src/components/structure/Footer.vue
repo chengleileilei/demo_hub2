@@ -1,5 +1,5 @@
 <template>
-<div>
+  <div>
     <el-row>
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="footer-wrap">
         <el-row class="centered footer">
@@ -10,7 +10,8 @@
                 src="@/assets/icon/arcoDesign-location.svg"
                 alt=""
               />
-              {{$t("message.address")}}北京市海淀区上园村3号
+              {{ $t("message.address")
+              }}{{ allData.message.footer.address[$i18n.locale] }}
             </p>
             <p class="with-logo-left">
               <img
@@ -18,19 +19,21 @@
                 src="@/assets/icon/fas-fa-phone.svg"
                 alt=""
               />
-              {{$t("message.phone")}}******
+              {{ $t("message.phone") }}{{ allData.message.footer.phone }}
             </p>
             <p class="with-logo-left">
               <img
                 class="footer-logo"
                 src="@/assets/icon/arcoDesign-email.svg"
                 alt=""
-              />{{$t("message.email")}}***@email.com
+              />{{ $t("message.email") }}{{ allData.message.footer.email }}
             </p>
             <br />
-            <a href="#"
+            <a :href="allData.message.footer.related_links.url"
               ><p class="small-p">
-                {{$t("message.related_links")}}北京交通大学计算机信息与技术学院
+                {{
+                  $t("message.related_links")
+                }}{{ allData.message.footer.related_links.text[$i18n.locale] }}
               </p></a
             >
           </el-col>
@@ -58,27 +61,28 @@
         </el-row>
       </el-col>
     </el-row>
-</div>
-  
+  </div>
 </template>
 
 <script>
 export default {
-
-}
+  data() {
+    return {
+      allData: this.$store.state,
+    };
+  },
+};
 </script>
 
 <style>
-
 .footer-wrap {
-  background-color: #333333;;
+  background-color: #333333;
 }
 .footer-wrap p {
   color: rgba(255, 255, 255, 1);
   font-size: 18px;
 }
 .footer {
-
   padding: 0px 10px;
 }
 

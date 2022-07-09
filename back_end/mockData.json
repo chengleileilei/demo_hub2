@@ -24,6 +24,21 @@
             }
         }
     },
+    "footer": {
+        "address": {
+            "en": "No.3 Shangyuancun Haidian District Beijing 100044 P. R. China",
+            "cn": "北京市海淀区上园村3号"
+        },
+        "email": "***@email.com",
+        "phone": "********",
+        "related_links": {
+            "url": "https://www.bjtu.edu.cn/",
+            "text": {
+                "en": "School of Computer Information and Technology, Beijing Jiaotong University",
+                "cn": "北京交通大学计算机信息与技术学院"
+            }
+        }
+    },
     "model_type": {
         "classification": {
             "name": {
@@ -42,6 +57,22 @@
                     "name": {
                         "en": "Alexnet",
                         "cn": "Alexnet(中)"
+                    },
+                    "args": {
+                        "arg1": {
+                            "default": "1",
+                            "values": [
+                                "1",
+                                "2"
+                            ]
+                        },
+                        "arg2": {
+                            "default": "a",
+                            "values": [
+                                "a",
+                                "b"
+                            ]
+                        }
                     },
                     "introduction": {
                         "tittle": {
@@ -69,7 +100,7 @@
                     "input_image_name": "demo.jpg",
                     "output_image_name": "demo.jpg",
                     "likes": 337,
-                    "pageviews": 0,
+                    "pageviews": 75,
                     "author": "DemoHub"
                 },
                 "rnet": {
@@ -102,8 +133,8 @@
                     },
                     "input_image_name": "demo.jpg",
                     "output_image_name": "demo.jpg",
-                    "likes": 339,
-                    "pageviews": 0,
+                    "likes": 338,
+                    "pageviews": 2,
                     "author": "DemoHub"
                 }
             }
@@ -150,7 +181,7 @@
                         }
                     },
                     "likes": 1,
-                    "pageviews": 0,
+                    "pageviews": 4,
                     "input_image_name": "default.png",
                     "output_image_name": "default.png",
                     "author": "DemoHub"

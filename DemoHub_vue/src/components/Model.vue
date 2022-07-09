@@ -13,24 +13,35 @@
         ]
       }}</el-breadcrumb-item>
     </el-breadcrumb>
-          <MyIntro :introData="allData['model_type'][modelType]['models'][modelId]['introduction']"></MyIntro>
+
+    <MyIntro
+      :introData="
+        allData['model_type'][modelType]['models'][modelId]['introduction']
+      "
+    ></MyIntro>
+
+    <component :is="currentView"></component>
 
     <h2>{{ modelType }}->{{ modelId }}</h2>
     {{ allData }}
-    <!-- {{ allData[modelType]["models"][modelId] }} -->
   </div>
 </template>
 
 <script>
 import configData from "@/assets/config.json";
 import MyIntro from "@/components/indexComponents/Intro.vue";
-
+// import Classification from "@/components/modelComponents/Classification.vue";
 
 export default {
   name: "Model",
-  components:{MyIntro},
+  components: {
+    MyIntro,
+    classification: () =>
+      import("@/components/modelComponents/Classification.vue"),
+  },
   data() {
     return {
+      currentView: this.$route.params.model_type,
       baseUrl: configData.base_url,
       modelType: this.$route.params.model_type,
       modelId: this.$route.params.model_id,
@@ -38,6 +49,17 @@ export default {
     };
   },
   created() {
+    // 更新模型访问量
+    this.$axios
+      .get(this.baseUrl + "pageviews", {
+        params: {
+          type: this.modelType,
+          model: this.modelId,
+        },
+      })
+      .then((response) => {
+        console.log("Current model pageviews: ", response.data);
+      });
     // 处理在浏览器直接打开model页的情况，此时session不存在，无模型数据，需要重新请求
     if (this.allData == null || JSON.stringify(this.allData) == "{}") {
       this.$axios.get(this.baseUrl + "data").then((response) => {
@@ -51,10 +73,10 @@ export default {
 </script>
 
 <style>
-.bread-tag{
-      font-size: 16px;
-    font-family: Arial;
-    font-weight: bold;
-    margin-top: 20px;
+.bread-tag {
+  font-size: 16px;
+  font-family: Arial;
+  font-weight: bold;
+  margin-top: 20px;
 }
 </style>
