@@ -20,9 +20,16 @@
       "
     ></MyIntro>
 
-    <component :is="currentView"></component>
+    <component
+      :is="currentView"
+      :modelData="{
+        modelType: modelType,
+        modelId: modelId,
+        condaEnv:  allData['model_type'][modelType]['models'][modelId]['conda_env'],
+        args: allData['model_type'][modelType]['models'][modelId]['args'],
+      }"
+    ></component>
 
-    <h2>{{ modelType }}->{{ modelId }}</h2>
     {{ allData }}
   </div>
 </template>

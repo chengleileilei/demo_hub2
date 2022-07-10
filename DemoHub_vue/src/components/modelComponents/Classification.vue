@@ -1,18 +1,17 @@
 <template>
   <div>
     <h1>classification</h1>
+    <h2>{{ modelData.modelType }}->{{ modelData.modelId }}</h2>
+    <h1>{{ modelData }}</h1>
+
     <el-row class="show-wrap">
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <p>{{$t("message.input_image")}}</p>
+        <p>{{ $t("message.input_image") }}</p>
         <img :src="imageUrl" alt="" class="source-image" />
-        <div
-          class="input-wrap"
-          v-show="imageUrl == ''"
-          @click="moveClick()"
-        >
-          <p v-show="isLoading == false">{{$t("message.drop_image")}}</p>
-          <p v-show="isLoading == false">{{$t("message.or")}}</p>
-          <p v-show="isLoading == false">{{$t("message.click_upload")}}</p>
+        <div class="input-wrap" v-show="imageUrl == ''" @click="moveClick()">
+          <p v-show="isLoading == false">{{ $t("message.drop_image") }}</p>
+          <p v-show="isLoading == false">{{ $t("message.or") }}</p>
+          <p v-show="isLoading == false">{{ $t("message.click_upload") }}</p>
           <p v-show="isLoading">uploading......</p>
           <input
             ref="filebutton"
@@ -23,8 +22,32 @@
         </div>
       </el-col>
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <p>{{$t("message.result")}}</p>
+        <p>{{ $t("message.result") }}</p>
         <!-- <img :src="imageUrl" alt="" /> -->
+      </el-col>
+    </el-row>
+    <el-row :gutter="10" v-if="JSON.stringify(modelData.args) != '{}'">
+      <el-col
+        :xs="24"
+        :sm="12"
+        :md="12"
+        :lg="6"
+        :xl="6"
+        v-for="(arg_data, arg_name) in modelData.args"
+        :key="arg_name"
+      >
+        <div class="arg-wrap">
+          <p>{{ arg_name }}: </p>
+          <el-select v-model="arg_data.default" placeholder="请选择">
+            <el-option
+              v-for="item in arg_data.values"
+              :key="item"
+              :label="item"
+              :value="item"
+            >
+            </el-option>
+          </el-select>
+        </div>
       </el-col>
     </el-row>
 
@@ -34,11 +57,13 @@
           href="javascript:void(0);"
           class="clear upload-btn"
           @click="imageClear()"
-          >{{$t("message.clear")}}</a
+          >{{ $t("message.clear") }}</a
         >
       </el-col>
       <el-col :xs="12" :sm="6" :md="6" :lg="6" :xl="6">
-        <a href="javascript:void(0);" class="submit upload-btn">{{$t("message.submit")}}</a>
+        <a href="javascript:void(0);" class="submit upload-btn">{{
+          $t("message.submit")
+        }}</a>
       </el-col>
     </el-row>
   </div>
@@ -49,12 +74,13 @@ import configData from "@/assets/config.json";
 
 export default {
   name: "classification",
-  props: [],
+  props: ["modelData"],
   data() {
     return {
       baseUrl: configData.base_url,
       imageUrl: "",
-      isLoading: false,
+      isLoading: false
+
     };
   },
   methods: {
@@ -123,10 +149,10 @@ export default {
     },
     imageClear() {
       (this.imageUrl = ""), (this.$refs.filebutton.value = "");
-              this.isLoading=false;
-
+      this.isLoading = false;
     },
   },
+
 };
 </script>
 
@@ -167,5 +193,14 @@ export default {
 .submit {
   border: 1px solid #cccccc;
   color: #333333;
+}
+.arg-wrap{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.arg-wrap>*{
+  margin: 5px 15px;
 }
 </style>

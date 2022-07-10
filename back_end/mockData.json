@@ -58,6 +58,7 @@
                         "en": "Alexnet",
                         "cn": "Alexnet(中)"
                     },
+                    "conda_env": "condaenv1",
                     "args": {
                         "arg1": {
                             "default": "1",
@@ -100,7 +101,7 @@
                     "input_image_name": "demo.jpg",
                     "output_image_name": "demo.jpg",
                     "likes": 337,
-                    "pageviews": 106,
+                    "pageviews": 172,
                     "author": "DemoHub"
                 },
                 "rnet": {
@@ -134,7 +135,7 @@
                     "input_image_name": "demo.jpg",
                     "output_image_name": "demo.jpg",
                     "likes": 338,
-                    "pageviews": 2,
+                    "pageviews": 7,
                     "author": "DemoHub"
                 }
             }
@@ -181,7 +182,7 @@
                         }
                     },
                     "likes": 2,
-                    "pageviews": 9,
+                    "pageviews": 11,
                     "input_image_name": "default.png",
                     "output_image_name": "default.png",
                     "author": "DemoHub"
