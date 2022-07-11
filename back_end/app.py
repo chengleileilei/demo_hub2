@@ -84,7 +84,6 @@ def pageviews():
 
 @app.route('/upload',methods=['GET','POST'])
 def uploadimage():
-
     #生成随机字符串，防止图片名字重复
     ran_str = ''.join(random.sample(string.ascii_letters + string.digits, 16))
     #获取图片文件 name = upload
@@ -105,6 +104,18 @@ def uploadimage():
     url = imgName
     #返回图片路径 到前端
     return url 
+
+@app.route('/submit',methods=['GET','POST'])
+def submit():
+    j = request.json
+    # image_name = request.args.get("image_url")
+    # conda_env = request.args.get("conda_env")
+    # args = request.args.get("args")
+    # print("tututuut:::")
+    print(j)
+    return jsonify(j)
+
+
 
 if __name__ == "__main__":
     # 初始化json数据（补充点赞，浏览，默认样例图片数据）

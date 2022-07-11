@@ -1,6 +1,6 @@
 <template>
   <div class="intro-wrap">
-          <div class="short-line"></div>
+    <div class="short-line"></div>
 
     <p class="intro-tittle">{{ introData.tittle[this.$i18n.locale] }}</p>
     <div
@@ -9,9 +9,9 @@
     >
       <p class="intro-text">
         {{ text }}
-        <span v-show="introData.text.en.length == index + 1"
-          ><a :href="introData.link.url">{{ introData.link.text.en }}</a></span
-        >
+        <span v-show="introData.text.en.length == index + 1" v-if="getType(introData.link)!='undefined'">
+          <a :href="introData.link.url">{{ introData.link.text.en }}</a>
+        </span>
       </p>
     </div>
   </div>
@@ -23,6 +23,11 @@ export default {
   props: ["introData"],
   data() {
     return {};
+  },
+  methods: {
+    getType(data) {
+      return typeof data;
+    },
   },
 };
 </script>
@@ -40,8 +45,7 @@ export default {
 
 .intro-wrap {
   text-align: left;
-  margin-bottom:20px;
-
+  margin-bottom: 20px;
 }
 .intro-tittle {
   font-size: 20px;
@@ -51,19 +55,19 @@ export default {
   margin: 15px 0;
 }
 .intro-text {
-    font-size: 14px;
-    font-family: Microsoft YaHei;
-    font-weight: 400;
-    color: #000000;
-    line-height: 24px;
-    text-indent: 2em;
-    margin-bottom: 5px;
+  font-size: 14px;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #000000;
+  line-height: 24px;
+  text-indent: 2em;
+  margin-bottom: 5px;
 }
-.intro-text a{
-    color: #337ab7;
+.intro-text a {
+  color: #337ab7;
 }
-.intro-text a:hover{
-        color: #23527c;
-        text-decoration-line: underline;
+.intro-text a:hover {
+  color: #23527c;
+  text-decoration-line: underline;
 }
 </style>

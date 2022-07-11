@@ -30,7 +30,7 @@
       }"
     ></component>
 
-    {{ allData }}
+    <!-- {{ allData }} -->
   </div>
 </template>
 

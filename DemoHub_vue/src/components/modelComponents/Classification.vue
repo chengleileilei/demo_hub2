@@ -2,7 +2,7 @@
   <div>
     <h1>classification</h1>
     <h2>{{ modelData.modelType }}->{{ modelData.modelId }}</h2>
-    <h1>{{ modelData }}</h1>
+    <!-- <h1>{{ modelData }}</h1> -->
 
     <el-row class="show-wrap">
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
@@ -23,10 +23,20 @@
       </el-col>
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <p>{{ $t("message.result") }}</p>
+        <div>
+          <p v-show="isLoading2">uploading......</p>
+          {{ modelResult }}
+        </div>
         <!-- <img :src="imageUrl" alt="" /> -->
       </el-col>
     </el-row>
-    <el-row :gutter="10" v-if="JSON.stringify(modelData.args) != '{}'">
+    <el-row
+      :gutter="10"
+      v-if="
+        JSON.stringify(modelData.args) != '{}' ||
+        getType(modelData.args) != 'undefined'
+      "
+    >
       <el-col
         :xs="24"
         :sm="12"
@@ -37,7 +47,7 @@
         :key="arg_name"
       >
         <div class="arg-wrap">
-          <p>{{ arg_name }}: </p>
+          <p>{{ arg_name }}:</p>
           <el-select v-model="arg_data.default" placeholder="请选择">
             <el-option
               v-for="item in arg_data.values"
@@ -61,9 +71,12 @@
         >
       </el-col>
       <el-col :xs="12" :sm="6" :md="6" :lg="6" :xl="6">
-        <a href="javascript:void(0);" class="submit upload-btn">{{
-          $t("message.submit")
-        }}</a>
+        <a
+          href="javascript:void(0);"
+          class="submit upload-btn"
+          @click="submit()"
+          >{{ $t("message.submit") }}</a
+        >
       </el-col>
     </el-row>
   </div>
@@ -79,11 +92,15 @@ export default {
     return {
       baseUrl: configData.base_url,
       imageUrl: "",
-      isLoading: false
-
+      isLoading: false,
+      isLoading2: false,
+      modelResult: "",
     };
   },
   methods: {
+    getType(data) {
+      return typeof data;
+    },
     //   点击事件转移
     moveClick() {
       // https://blog.csdn.net/youdu0213/article/details/122825179
@@ -144,15 +161,46 @@ export default {
             );
         });
       } else {
-        console.log("图片校验失败！");
+        this.$message({
+          message: "图片校验失败！",
+          type: "warning",
+        });
+        // console.log("图片校验失败！");
       }
     },
     imageClear() {
       (this.imageUrl = ""), (this.$refs.filebutton.value = "");
       this.isLoading = false;
+      this.isLoading2 = false;
+      this.modelResult = "";
+    },
+    submit() {
+      if (this.imageUrl == "") {
+        this.$message({
+          message: "请先上传图片！",
+          type: "warning",
+        });
+      } else {
+        this.isLoading2 = true;
+        this.modelResult = "";
+        let post_data = {
+          image_url: this.imageUrl,
+          conda_env: this.modelData.condaEnv,
+          args: {},
+        };
+        for (var arg_name in this.modelData.args) {
+          post_data["args"][arg_name] =
+            this.modelData.args[arg_name]["default"];
+        }
+        console.log(post_data);
+        this.$axios.post(this.baseUrl + "submit", post_data).then((res) => {
+          this.modelResult = res.data;
+          console.log("res=>", res);
+          this.isLoading2 = false;
+        });
+      }
     },
   },
-
 };
 </script>
 
@@ -194,13 +242,13 @@ export default {
   border: 1px solid #cccccc;
   color: #333333;
 }
-.arg-wrap{
+.arg-wrap {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
-.arg-wrap>*{
+.arg-wrap > * {
   margin: 5px 15px;
 }
 </style>
